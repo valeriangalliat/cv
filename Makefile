@@ -1,16 +1,13 @@
-ALL = cv.en.pdf cv.fr.pdf
+PDF = dist/cv.en.pdf dist/cv.fr.pdf
 
-all: $(ALL)
+build: dist $(PDF)
 
-.PHONY: dist
-dist: all
-	if [ ! -d dist ]; then git clone -b gh-pages $$(git remote get-url origin) dist; fi
-	cp *.pdf dist
-	cd dist && git commit -am 'Update' && git push
+dist:
+	git clone --branch gh-pages $$(git remote get-url origin) dist
 
 .PHONY: watch
 watch:
 	inotifywait -me close_write *.tex | while read l; do make; done
 
-%.pdf: %.tex setup.tex cv.tex
-	pdflatex -interaction=nonstopmode $<
+dist/%.pdf: %.tex setup.tex cv.tex
+	pdflatex -output-directory=dist -interaction=nonstopmode $<
