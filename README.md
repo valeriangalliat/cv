@@ -8,6 +8,5 @@
 ## Build
 
 ```sh
-make # Render PDF
-make dist # Push rendered PDF to the `gh-pages` branch
+make
 ```
