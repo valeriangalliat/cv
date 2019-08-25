@@ -1,1 +1,5 @@
-/result
+/dist
+*.aux
+*.log
+*.out
+*.pdf

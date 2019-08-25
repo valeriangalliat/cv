@@ -2,7 +2,7 @@ let
   pkgs = import <nixpkgs> {};
 in
 { stdenv ? pkgs.stdenv }:
-  
+
 stdenv.mkDerivation {
   name = "cv";
   src = ./.;
